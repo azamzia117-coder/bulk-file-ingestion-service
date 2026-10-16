@@ -1,0 +1,25 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: bulk-file-ingestion-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ingestion}
+    username: ${DB_USERNAME:ingestion}
+    password: ${DB_PASSWORD:}
+  sql:
+    init:
+      mode: always
+
+ingestion:
+  batch-size: ${INGESTION_BATCH_SIZE:1000}
+  s3:
+    region: ${AWS_REGION:us-east-1}
+    endpoint: ${S3_ENDPOINT:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
